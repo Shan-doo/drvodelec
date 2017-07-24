@@ -15,7 +15,7 @@
 
             <div class="modal-body">
 
-                <form class="form-horizontal" role="form" method="POST" action="/password/reset">
+                <form id="resetForm" class="form-horizontal" role="form" method="POST" action="/password/reset">
                     {{ csrf_field() }}
 
                     <input type="hidden" name="token" value="{{ $token }}">
@@ -36,6 +36,12 @@
                             <input id="email" type="email" class="form-control formField input-lg" name="email" value="{{ $email or old('email') }}"  autofocus placeholder="E-Mail Adresa">
 
                         </div>
+
+                        <span id="resetEmailError" class="help-block inputError">
+
+                            <strong></strong>
+
+                        </span>
 
                         @if ($errors->has('email'))
                         <span class="help-block">
@@ -61,6 +67,12 @@
                             <input id="password" type="password" class="form-control formField input-lg" name="password"  placeholder="Lozinka">
 
                         </div>
+
+                        <span id="resetPasswordError" class="help-block inputError">
+
+                            <strong></strong>
+
+                        </span>
 
                         @if ($errors->has('password'))
                         <span class="help-block">
@@ -96,7 +108,7 @@
 
                 <div class="form-group">
                     <div class="col-md-6 col-md-offset-3">
-                        <button type="submit" class="btn btn-primary btn-block formBtn">
+                        <button id="resetPasswordSubmit" type="submit" class="btn btn-primary btn-block formBtn">
                             Reset Password
                         </button>
                     </div>

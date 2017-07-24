@@ -1,38 +1,19 @@
-@extends('admin.index')
+@extends('adminlte::page')
 
-@section('admin-page')
-	
-	<div class="container">
-		
-		<div class="row">
-			
-			<div class="col-md-12">
-				
-				<div id="newsAjax">
-		
-					
+@section('title', 'Dashboard')
 
-				</div>
+@section('content_header')
+    <h1>Dashboard</h1>
+@stop
 
-			</div>
+@section('content')
+    <p>Welcome to news.</p>
+@stop
 
-		</div>
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
 
-	</div>
-
-	<script src="/js/admin.js"></script>
-
-	<script type="text/javascript">
-		
-		$(document).ready(function() {
-
-			$('#account').click(toggleNavDropdown);
-
-			$('html').click(hideDropdown);
-		
-
-		});
-
-	</script>
-
-@endsection
+@section('js')
+    <script> console.log('Hi!'); </script>
+@stop

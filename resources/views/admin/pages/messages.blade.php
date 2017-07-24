@@ -1,29 +1,19 @@
-@extends('admin.index')
+@extends('adminlte::page')
 
-@section('admin-page')
-	
-	<div class="container">
+@section('title', 'Dashboard')
 
-		<h1 class="text-muted text-center" style="margin-bottom:10%;">Messages</h1>
-		
-		<div class="row">
-			
-			<div class="col-md-12">
-				
-				<div id="messagesAjax">
-		
-					@include('admin.partials.messages')
+@section('content_header')
+    <h1>Dashboard</h1>
+@stop
 
-				</div>
+@section('content')
+    <p>Welcome to messages.</p>
+@stop
 
-			</div>
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
 
-		</div>
-
-	</div>
-
-	<script src="/js/admin.js"></script>
-
-	<script src="{{ url('js/messages.js') }}"></script>
-
-@endsection
+@section('js')
+    <script> console.log('Hi!'); </script>
+@stop

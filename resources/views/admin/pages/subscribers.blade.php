@@ -1,29 +1,19 @@
-@extends('admin.index')
+@extends('adminlte::page')
 
-@section('admin-page')
-	
-	<div class="container">
+@section('title', 'Dashboard')
 
-		<h1 class="text-muted text-center" style="margin-bottom:10%;">Subscribers</h1>
-		
-		<div class="row">
-			
-			<div class="col-md-12">
-				
-				<div id="subscribersAjax">
-		
-					@include('admin.partials.subscribers')
+@section('content_header')
+    <h1>Dashboard</h1>
+@stop
 
-				</div>
+@section('content')
+    <p>Welcome to subs.</p>
+@stop
 
-			</div>
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
 
-		</div>
-
-	</div>
-
-	
-	
-	<script src="{{ url('js/subscribers.js') }}"></script>
-
-@endsection
+@section('js')
+    <script> console.log('Hi!'); </script>
+@stop

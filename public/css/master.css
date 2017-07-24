@@ -7651,6 +7651,10 @@ body.modal-open {
 body.modal-open #menuF.fixed {
     left: -8px !important;
 }
+
+.modal {
+  overflow-y:auto;
+}
  
 .headerLine{
 	position: relative;
@@ -7849,7 +7853,7 @@ border: none;
 	color:#1fcdff;	
 }
 
-#menu li:nth-child(5){
+#menu li:nth-child(6){
 	border-right:0;
 	padding-right:0px;
 }
@@ -9435,11 +9439,16 @@ textarea {
 	overflow-y: scroll;
 }
 
+#loginModal .formField {
+
+	transition: background 0.3s linear;
+}
+
 #loginModal ul {
 	border:none;
 }
 
-#loginModal #loginAdmin > .modal-body, #loginModal #resetPassword > .modal-body {
+#loginModal #loginUser > .modal-body, #loginUser #forgotPassword > .modal-body {
 	margin: 20px auto;
 }
 
@@ -9456,7 +9465,7 @@ textarea {
 }
 
 #loginModal ul li {
-	width: 50%;
+	width: calc(100% / 3);
 	text-align: center;
 	border:none;
 }
@@ -9481,7 +9490,7 @@ textarea {
 
 }
 
-#loginSpinner, #resetSpinner {
+#loginSpinner, #forgotSpinner, #registerSpinner {
 
 	visibility: hidden;
 }
@@ -9510,7 +9519,7 @@ textarea {
   filter: blur(0px);
 } */
 
-#loginNotModal {
+/* #loginNotModal {
 	
 	margin-top: 20vh;
 	margin-bottom: calc(80vh - 200px - 436px);
@@ -9538,20 +9547,20 @@ textarea {
 #loginNotModal h1, #forgotPassword h1 {
 	text-align: center;
 	margin-bottom: 20%;
-}
+} */
 
 @media screen and (min-width: 992px) {
 
-	#loginNotModal {
+	/* #loginNotModal {
 	
 	margin-top: 20vh;
 	margin-bottom: calc(80vh - 200px - 393px);
 	}
-
+	
 	#forgotPassword {
-
+	
 	margin-top: 20vh;
-	margin-bottom: calc(80vh - 200px - 337px);
+	margin-bottom: calc(80vh - 200px - 337px); */
 }
 
 /* conversation */

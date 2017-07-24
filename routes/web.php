@@ -22,7 +22,7 @@ Route::middleware('locale')->group(function() {
 
 
 // admin routes
-Route::middleware('auth')->group(function() {
+Route::middleware(['auth', 'admin'])->group(function() {
 
 	Route::get('/admin', 'AdminController@index')->name('admin');
 
@@ -68,5 +68,9 @@ Route::namespace('auth')->middleware('locale')->group(function() {
 	Route::post('/login', 'LoginController@login');
 
 	Route::get('/logout', 'LoginController@logout');
+
+	Route::post('/logout', 'LoginController@logout');
+
+	Route::post('/register', 'RegisterController@register')->name('register');
 
 });

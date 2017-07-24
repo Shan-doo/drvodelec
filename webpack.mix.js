@@ -33,3 +33,17 @@ mix.scripts(['resources/assets/js-vendors/jquery-1.8.3.min.js',
 			], 'public/js/vendors.js');
 
 mix.styles('resources/assets/css/*.css', 'public/css/master.css');
+
+/*mix.styles('node_modules/admin-lte/dist/css/AdminLTE.css', 'public/css/admin/AdminLTE.css');
+
+mix.styles('node_modules/admin-lte/dist/css/skins/skin-blue.css', 'public/css/admin/skins/skin-blue.css');
+
+mix.scripts('node_modules/admin-lte/dist/js/app.js', 'public/js/admin/panel.js');
+
+mix.scripts('node_modules/admin-lte/plugins/jQuery/jquery-2.2.3.min.js', 'public/js/admin/jquery-2.2.3.min.js');
+
+mix.scripts('node_modules/admin-lte/bootstrap/js/bootstrap.js', 'public/js/admin/bootstrap.js');*/
+
+
+
+

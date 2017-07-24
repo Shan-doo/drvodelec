@@ -45,6 +45,7 @@
 						<li class="active" ><a href="#home">{{ trans('navigation.home') }}</a></li>
 						<li class=""><a href="#about">{{ trans('navigation.about') }}</a></li>
 						<li class=""><a href="#project">{{ trans('navigation.projects') }}</a></li>
+						<li class=""><a href="#news">{{ trans('navigation.news') }}</a></li>
 						<li class=""><a href="#contact">{{ trans('navigation.contact') }}</a></li>
 										
 						@if(!auth()->check())
@@ -60,7 +61,7 @@
 									&nbsp;&nbsp;<i class="fa fa-caret-down" aria-hidden="true"></i>
 								</a>
 								<ul id="dropdownMenu" class="hideDrop">
-									<li><a href="/admin/messages">Admin&nbsp;Panel</a></li>
+									<li><a href="/admin">Admin&nbsp;Panel</a></li>
 									<li><a href="/logout">Log&nbsp;Out</a></li>
 								</ul>
 							</li>

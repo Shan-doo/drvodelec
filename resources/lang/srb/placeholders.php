@@ -15,6 +15,7 @@ return [
 
     'username' => 'Korisničko ime *',
     'password' => 'Šifra *',
+    'password-confirm' => 'Potvrdi Šifru *',
     'email' => 'Email *',
 
 ];

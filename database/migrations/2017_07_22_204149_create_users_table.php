@@ -19,9 +19,15 @@ class CreateUsersTable extends Migration
             $table->string('username');
             $table->string('email')->unique();
             $table->string('password');
+            $table->Integer('role_id')->unsigned()->default(1);
             $table->rememberToken();
+            $table->timestamp('last_login');
             $table->timestamps();
         });
+
+        Schema::table('users', function($table) {
+           $table->foreign('role_id')->references('id')->on('roles');
+       });
     }
 
     /**

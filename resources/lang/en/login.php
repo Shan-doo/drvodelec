@@ -16,6 +16,7 @@ return [
     'heading' => 'Please Log In',
     'login' => 'Login',
     'forgot' => 'Forgot Password',
-    'reset' => 'Please Reset Your Password'
+    'reset' => 'Please Reset Your Password',
+    'register' => 'Register',
 
 ];

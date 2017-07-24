@@ -16,6 +16,7 @@ return [
     'heading' => 'Molimo prijavite se',
     'login' => 'Prijava',
     'forgot' => 'Zaboravljena lozinka',
-    'reset' => 'Molimo resetujte vašu lozinku'
+    'reset' => 'Molimo resetujte vašu lozinku',
+    'register' => 'Registracija',
 
 ];

@@ -22,10 +22,22 @@ $(document).ready(function(){
 			submitLoginForm();
 		});
 
+		$('#registerFormSubmit').click(function(e) {
+
+			e.preventDefault();
+			submitRegisterForm();
+		});
+
+		$('#forgotFormSubmit').click(function(e) {
+
+			e.preventDefault();
+			submitForgotPasswordForm();
+		});
+
 		$('#resetFormSubmit').click(function(e) {
 
 			e.preventDefault();
-			submitResetForm();
+			submitResetPasswordForm();
 		});
 
 		// subscriber
@@ -220,7 +232,7 @@ $(document).ready(function(){
 		var rangeTop    =   200;
 		var rangeBottom =   50;		
 
-		$('.navmenu').find('ul > li > a:lt(4)').each(function(){
+		$('.navmenu').find('ul > li > a:lt(5)').each(function(){
 
 			contentTop.push( $( $(this).attr('href') ).offset().top );
 
@@ -326,8 +338,8 @@ $(document).ready(function(){
 		    type: "POST",
 		    url: "/login",
 		    data: {
-		    	username: $loginForm.find('input[name=username]').val(),
-		    	password: $loginForm.find('input[name=password]').val()
+		    	username: $username,
+		    	password: $password
 			},
 		
 		    success: function(response, textStatus, xhr) {
@@ -348,7 +360,7 @@ $(document).ready(function(){
 
 		    		$('#loginSpinner').css('visibility', 'hidden');
 
-		    		$('#usernameError > strong').text(JSON.parse(response.responseText).username);
+		    		$('#usernameErrorLogin > strong').text(JSON.parse(response.responseText).username);
 		    	}
 
 		    	if (JSON.parse(response.responseText).password !== undefined) {
@@ -359,7 +371,7 @@ $(document).ready(function(){
 
 		    		for (var i = 0; i < passwordErrors.length; i++) {
 		    		
-		    			$('#passwordError > strong').text(passwordErrors[i]);
+		    			$('#passwordErrorLogin > strong').text(passwordErrors[i]);
 		    		}
 
 		    		
@@ -369,45 +381,175 @@ $(document).ready(function(){
 		});
 	}
 
-	function submitResetForm() {
+	function submitRegisterForm() {
 
-		$('#resetEmailError > strong').text('');
+		$('#usernameErrorRegister > strong').text('');
 
-		$('#resetEmailError > strong').text('');
+		$('#emailErrorRegister > strong').text('');
 
-		$('#resetEmailSuccess > strong').text('');
+		$('#passwordErrorRegister > strong').text('');
 
-		var $resetPasswordForm = $('#resetPasswordForm');
+		var $registerForm = $('#registerForm');
 
-		var $email = $resetPasswordForm.find('input[name=email]').val();
+		var $username = $registerForm.find('input[name=username]').val();
 
-		$('#resetSpinner').css('visibility', 'visible');
-		
+		var $email = $registerForm.find('input[name=email]').val();
+
+		var $password = $registerForm.find('input[name=password]').val();
+
+		var $password_confirmation = $registerForm.find('input[name=password_confirmation]').val();
+
+		$('#registerSpinner').css('visibility', 'visible');
+
 
 		$.ajax({
 		    type: "POST",
-		    url: "/password/email",
+		    url: "/register",
 		    data: {
-		    	email: $resetPasswordForm.find('input[name=email]').val()
+		    	username: $username,
+		    	email: $email,
+		    	password: $password,
+		    	password_confirmation: $password_confirmation
 			},
 		
 		    success: function(response, textStatus, xhr) {
-			 	
-		    	$('#resetSpinner').css('visibility', 'hidden');
 
-		    	$('#resetEmailSuccess > strong').text(response.link);
-		    	/*$('#loginModal').modal('hide');*/
+		    	$('#registerSpinner').css('visibility', 'hidden');
+	
+		    	window.location = '/';
+
+		    	$('#loginModal').modal('hide');
 
 		    },
 
 		    error: function(response, textStatus, xhr) {
+
+		    	if (JSON.parse(response.responseText).username !== undefined) {
+
+		    		$('#registerSpinner').css('visibility', 'hidden');
+
+		    		$('#usernameErrorRegister > strong').text(JSON.parse(response.responseText).username);
+		    	}
+
+		    	if (JSON.parse(response.responseText).email !== undefined) {
+
+		    		$('#registerSpinner').css('visibility', 'hidden');
+
+		    		$('#emailErrorRegister > strong').text(JSON.parse(response.responseText).email);
+		    	}
+
+		    	if (JSON.parse(response.responseText).password !== undefined) {
+
+		    		var passwordErrors = JSON.parse(response.responseText).password;
+		    				    		
+		    		$('#loginSpinner').css('visibility', 'hidden');
+
+		    		for (var i = 0; i < passwordErrors.length; i++) {
+		    		
+		    			$('#passwordErrorRegister > strong').text(passwordErrors[i]);
+		    		}
+		    	}		    			    			  
+		    }
+		});
+	}
+
+	function submitForgotPasswordForm() {
+
+		$('#forgotEmailError > strong').text('');
+
+		$('#forgotEmailSuccess > strong').text('');
+
+		var $forgotPasswordForm = $('#forgotPasswordForm');
+
+		var $email = $forgotPasswordForm.find('input[name=email]').val();
+
+		$('#forgotSpinner').css('visibility', 'visible');
+		
+		$.ajax({
+		    type: "POST",
+		    url: "/password/email",
+		    data: {
+		    	email: $email
+			},
+		
+		    success: function(response, textStatus, xhr) {
+			 
+		    	$('#forgotSpinner').css('visibility', 'hidden');
+
+		    	if (response.success !== undefined) {
+		    		$('#forgotEmailSuccess > strong').text(response.success);
+		    	}
+
+		    	if (response.failed !== undefined) {
+		    		$('#forgotEmailError > strong').text(response.failed);
+		    	}
+		    },
+
+		    error: function(response, textStatus, xhr) {
+
+		    	$('#forgotSpinner').css('visibility', 'hidden');
 				
+		    	$('#forgotEmailError > strong').text('Došlo je do graške. Molimo pokušajte kasnije.');		    	    			    			  
+		    }
+		});
+	}
+
+	function submitResetPasswordForm() {
+
+		$('#resetEmailError > strong').text('');
+
+		$('#resetPasswordError > strong').text('');
+
+		var $resetForm = $('#resetForm');
+
+		var $email = $resetForm.find('input[name=email]').val();
+
+		var $password = $resetForm.find('input[name=password]').val();
+
+		var $password_confirmation = $resetForm.find('input[name=password_confirmation]').val();
+
+		$('#resetSpinner').css('visibility', 'visible');
+
+
+		$.ajax({
+		    type: "POST",
+		    url: "/password/reset",
+		    data: {
+		    	email: $email,
+		    	password: $password,
+		    	password_confirmation: $password_confirmation
+			},
+		
+		    success: function(response, textStatus, xhr) {
+
+		    	$('#resetSpinner').css('visibility', 'hidden');
+	
+		    	window.location = '/';
+
+		    	$('#loginModal').modal('hide');
+
+		    },
+
+		    error: function(response, textStatus, xhr) {
+
 		    	if (JSON.parse(response.responseText).email !== undefined) {
 
 		    		$('#resetSpinner').css('visibility', 'hidden');
 
 		    		$('#resetEmailError > strong').text(JSON.parse(response.responseText).email);
-		    	}    			    			  
+		    	}
+
+		    	if (JSON.parse(response.responseText).password !== undefined) {
+
+		    		var passwordErrors = JSON.parse(response.responseText).password;
+		    				    		
+		    		$('#resetSpinner').css('visibility', 'hidden');
+
+		    		for (var i = 0; i < passwordErrors.length; i++) {
+		    		
+		    			$('#resetPasswordError > strong').text(passwordErrors[i]);
+		    		}
+		    	}		    			    			  
 		    }
 		});
 	}

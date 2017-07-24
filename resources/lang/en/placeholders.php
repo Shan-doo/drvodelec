@@ -15,6 +15,7 @@ return [
 
     'username' => 'Username *',
     'password' => 'Password *',
+    'password-confirm' => 'Confirm Password *',
     'email' => 'Email *',
 
 ];

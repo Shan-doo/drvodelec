@@ -29,10 +29,10 @@ class ForgotPasswordController extends Controller
     {
         $this->middleware('guest');
 
-        $this->middleware('email');
+        /*$this->middleware('email');*/
     }
 
-    public function showSendLink()
+   /* public function showSendLink()
     {
         return view('auth.passwords.forgot');
 
@@ -42,5 +42,5 @@ class ForgotPasswordController extends Controller
     {
         return view('auth.passwords.reset');
 
-    }
+    }*/
 }

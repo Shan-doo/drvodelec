@@ -17,7 +17,30 @@ class UsersTableSeeder extends Seeder
         	'username' => 'Nejko',
         	'email' => 'nejko@example.com',
         	'password' => bcrypt('password'),
+            'last_login' => \Carbon\Carbon::create(2017, 7, 12, 0),
+            'role_id' => 3,
+            'created_at' => \Carbon\Carbon::now(),
+            'updated_at' => \Carbon\Carbon::now(),
       	]);
+
+        DB::table('users')->insert([
+            'username' => 'Nena',
+            'email' => 'nena@example.com',
+            'password' => bcrypt('password'),
+            'last_login' => \Carbon\Carbon::create(2017, 7, 21, 0),
+            'role_id' => 2,
+            'created_at' => \Carbon\Carbon::now(),
+            'updated_at' => \Carbon\Carbon::now(),
+        ]);
+
+        DB::table('users')->insert([
+            'username' => 'Bruno    ',
+            'email' => 'bruno@example.com',
+            'password' => bcrypt('password'),
+            'last_login' => \Carbon\Carbon::create(2017, 7, 15, 0),
+            'created_at' => \Carbon\Carbon::now(),
+            'updated_at' => \Carbon\Carbon::now(),
+        ]);
 
     }
 }

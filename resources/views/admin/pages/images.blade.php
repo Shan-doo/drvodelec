@@ -1,43 +1,19 @@
-@extends('admin.index')
+@extends('adminlte::page')
 
-@section('admin-page')
-	
-	<div class="container">
+@section('title', 'Dashboard')
 
-		<h1 class="text-muted text-center" style="margin-bottom:10%;">Images</h1>
-		
-		<div class="row">
-			
-			<div class="col-md-9">
-				
-				<div id="imagesAjax">
-		
-					@include('admin.partials.images')
+@section('content_header')
+    <h1>Dashboard</h1>
+@stop
 
-				</div>
+@section('content')
+    <p>Welcome to images.</p>
+@stop
 
-			</div>
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
 
-			<div class="col-md-3">
-				
-				<div id="images-add">
-		
-					@include('admin.partials.images-add')
-
-				</div>
-
-				<div id="images-add">
-		
-					@include('admin.partials.categories-add')
-
-				</div>
-
-			</div>
-
-		</div>
-
-	</div>
-
-	<script type="text/javascript" src="{{ url('js/images.js') }}"></script>
-
-@endsection
+@section('js')
+    <script> console.log('Hi!'); </script>
+@stop

@@ -16,20 +16,23 @@
 			
 				<ul class="nav nav-tabs">
 		
-				  <li class="active"><a data-toggle="tab" href="#loginAdmin">{{ trans('login.login') }}</a></li>
+				  <li class="active"><a data-toggle="tab" href="#loginUser">{{ trans('login.login') }}</a></li>
 		
-				  <li><a data-toggle="tab" href="#resetPassword">{{ trans('login.forgot') }}</a></li>
+				  <li><a data-toggle="tab" href="#registerUser">{{ trans('login.register') }}</a></li>
+
+				  <li><a data-toggle="tab" href="#forgotPassword">{{ trans('login.forgot') }}</a></li>
 		
 				</ul>
 						
 				<div class="tab-content">
 
 					<!-- login -->
-					<div id="loginAdmin" class="tab-pane active">
+
+					<div id="loginUser" class="tab-pane fade in active">
 						
 						<div class="modal-body">
 												
-							<form id="loginForm" method="POST" action="/login" class="form-horizontal loginForm">
+							<form id="loginForm" method="POST" action="/login" class="form-horizontal loginForm" style="margin-top: 5%;">
 					
 								{{ csrf_field() }}
 					
@@ -49,7 +52,7 @@
 																						
 			                            </div>
 
-			                            <span id="usernameError" class="help-block inputError">
+			                            <span id="usernameErrorLogin" class="help-block inputError">
 
 			                            	<strong></strong>
 
@@ -85,7 +88,7 @@
 
 										</div>
 
-										<span id="passwordError" class="help-block inputError">
+										<span id="passwordErrorLogin" class="help-block inputError">
 											
 			                            	<strong></strong>
 
@@ -107,6 +110,8 @@
 															
 								<img id="loginSpinner" class="center-block" src="/images/camera-loader.gif">
 
+								<!-- <a id="forgotPassword" class="col-md-6 col-md-offset-3" href="#">Forgot Password</a> --> 
+
 								<div class="form-group">
 
 			                        <div class="col-md-6 col-md-offset-3" style="margin-top: 20px; margin-bottom: 20px;">
@@ -118,35 +123,183 @@
 
 								</div>
 					
-							</form> 
+							</form>
+													
+						</div>
+
+					</div>
+
+					<!-- end login -->
+
+					<!-- register -->
+					
+					<div id="registerUser" class="tab-pane fade in">
+						
+						<div class="modal-body">
+												
+							<form id="registerForm" class="form-horizontal" role="form" method="POST" action="{{ route('register') }}" style="margin-top: 10%;">
+		                        {{ csrf_field() }}
+
+		                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+		                          
+									<div class="col-md-6 col-md-offset-3">
+
+										<div class="input-group">
+
+											<span class="input-group-addon">
+												
+												<i class="fa fa-user" aria-hidden="true"></i>
+
+											</span>
+		                            
+			                                <input id="name" type="text" class="form-control formField input-lg" name="username" value="{{ old('name') }}" placeholder="{{ trans('placeholders.username') }}" autofocus>
+
+			                            </div>
+
+			                            <span id="usernameErrorRegister" class="help-block inputError">
+
+			                            	<strong></strong>
+
+			                            </span>
+
+		                                @if ($errors->has('name'))
+		                                    <span class="help-block">
+		                                        <strong>{{ $errors->first('name') }}</strong>
+		                                    </span>
+		                                @endif
+			                           
+			                        </div>
+		                            
+		                        </div>
+
+		                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+		                            
+		                            <div class="col-md-6 col-md-offset-3">
+
+										<div class="input-group">
+
+											<span class="input-group-addon">
+												
+												<i class="fa fa-envelope-o" aria-hidden="true"></i>
+
+											</span>
+
+			                                <input id="email" type="email" class="form-control formField input-lg" name="email" value="{{ old('email') }}" placeholder="{{ trans('placeholders.email') }}">
+
+			                            </div>
+
+			                            <span id="emailErrorRegister" class="help-block inputError">
+
+			                            	<strong></strong>
+
+			                            </span>
+
+		                                @if ($errors->has('email'))
+		                                    <span class="help-block">
+		                                        <strong>{{ $errors->first('email') }}</strong>
+		                                    </span>
+		                                @endif
+			                            
+			                        </div>
+		                            
+		                        </div>
+
+		                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+		                            
+									<div class="col-md-6 col-md-offset-3">
+
+										<div class="input-group">
+
+											<span class="input-group-addon">
+												
+												<i class="fa fa-key" aria-hidden="true"></i>
+
+											</span>
+		                            
+			                                <input id="password" type="password" class="form-control formField input-lg" name="password" placeholder="{{ trans('placeholders.password') }}">
+
+			                            </div>
+			                            
+			                            <span id="passwordErrorRegister" class="help-block inputError">
+
+			                            	<strong></strong>
+
+			                            </span>   
+
+		                                @if ($errors->has('password'))
+		                                    <span class="help-block">
+		                                        <strong>{{ $errors->first('password') }}</strong>
+		                                    </span>
+		                                @endif			                            
+
+			                        </div>
+		                            
+		                        </div>
+
+		                        <div class="form-group">
+		                           	
+		                           	<div class="col-md-6 col-md-offset-3">
+
+										<div class="input-group">
+
+											<span class="input-group-addon">
+												
+												<i class="fa fa-key" aria-hidden="true"></i>
+
+											</span>
+		                            
+		                                	<input id="password-confirm" type="password" class="form-control formField input-lg" name="password_confirmation" placeholder="{{ trans('placeholders.password-confirm') }}">
+
+		                                </div>	                             
+
+		                            </div>
+		                            
+		                        </div>
+
+		                        <img id="registerSpinner" class="center-block" src="/images/camera-loader.gif">
+
+		                        <div class="form-group">
+
+		                            <div class="col-md-6 col-md-offset-3" style="margin-top: 20px; margin-bottom: 20px;">
+
+		                                <button id="registerFormSubmit" type="submit" class="btn btn-default btn-block formBtn">
+		                                    Register
+		                                </button>
+
+		                            </div>
+		                        </div>
+		                    </form> 
 														
 						</div>
 					
 					</div>
-					
-					<!-- reset -->
-					<div id="resetPassword" class="tab-pane">
-						
+
+					<!-- end register -->
+
+					<!-- forgot password -->					
+
+					<div id="forgotPassword" class="tab-pane fade in">
+	
 						<div class="modal-body">
-		
-							<form id="resetPasswordForm" method="POST" action="/password/email" class="form-horizontal loginForm">
-		
+							
+							<form id="forgotPasswordForm" method="POST" action="/password/email" class="form-horizontal loginForm">
+								
 								{{ csrf_field() }}
 
 								<div class="form-group">
 
 									<div class="col-md-6 col-md-offset-3">
-									
-										<span id="resetEmailSuccess" class="help-block">
+										
+										<span id="forgotEmailSuccess" class="help-block">
 
-			                                <strong></strong>
+											<strong></strong>
 
-			                            </span>
+										</span>
 
-		                            </div>
+									</div>
 
 								</div>
-		
+								
 								<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 									
 									<div class="col-md-6 col-md-offset-3">
@@ -165,19 +318,19 @@
 
 										@if ($errors->has('email'))
 
-			                                <span class="help-block">
+										<span class="help-block">
 
-			                                    <strong>{{ $errors->first('email') }}</strong>
+											<strong>{{ $errors->first('email') }}</strong>
 
-			                                </span>
+										</span>
 
-			                            @endif
-			                   
-			                            <span id="resetEmailError" class="help-block inputError">
+										@endif
+										
+										<span id="forgotEmailError" class="help-block inputError">
 
-			                                <strong></strong>
+											<strong></strong>
 
-			                            </span>
+										</span>
 
 									</div>
 
@@ -185,19 +338,19 @@
 
 								<div class="form-group">
 
-									<img id="resetSpinner" class="center-block" src="/images/camera-loader.gif">
+									<img id="forgotSpinner" class="center-block" src="/images/camera-loader.gif">
 
 								</div>
 								
 								<div class="form-group">
 
-			                        <div class="col-md-6 col-md-offset-3">
+									<div class="col-md-6 col-md-offset-3">
 
-										<button id="resetFormSubmit" type="submit" class="btn btn-default btn-block formBtn">
+										<button id="forgotFormSubmit" type="submit" class="btn btn-default btn-block formBtn">
 
 											<i class="fa fa-refresh" aria-hidden="true"></i>
-										
-										Resetuj
+											
+											Resetuj
 
 										</button>
 
@@ -206,10 +359,12 @@
 								</div>
 
 							</form> 
-		
+							
 						</div>
-		
-					</div>							
+						
+					</div>
+
+					<!-- end forgot password -->		
 		
 				</div>
 			
