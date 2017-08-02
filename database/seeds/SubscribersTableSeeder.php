@@ -13,7 +13,7 @@ class SubscribersTableSeeder extends Seeder
     {	
     	/*DB::table('subscribers')->truncate();*/
 
-        factory(App\Subscriber::class, 15)->create()->each(function($subscriber) {
+        factory(App\Subscriber::class, 20)->create()->each(function($subscriber) {
 
         	$subscriber->status = 1;
 

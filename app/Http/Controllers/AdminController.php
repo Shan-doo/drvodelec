@@ -4,18 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Message;
-
-use App\User;
+use App\Feed;
 
 class AdminController extends Controller
 {
     public function index()
     {	
-    	$messages = Message::take(5)->get();
-
-    	$users = User::all();
+    	$feeds = Feed::orderBy('created_at', 'desc')->get();
 	
-    	return view('admin.index', compact('messages', 'users'));
+    	return view('admin.index', compact('feeds', 'last_login'));
     }
 }

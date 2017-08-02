@@ -114,14 +114,7 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
-        /*[
-            'text'        => 'Pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'file',
-            'label'       => 4,
-            'label_color' => 'success',
-        ],*/
-        /////
+        
         [
             'text' => 'Pocetak',
             'icon'    => 'home',
@@ -138,7 +131,7 @@ return [
                 ],
                 [
                     'text'    => 'Dodaj',
-                    'url'     => 'admin/images/add',
+                    'url'     => 'admin/images/create',
                 ],
             ],
         ],
@@ -152,14 +145,24 @@ return [
                 ],
                 [
                     'text'    => 'Dodaj',
-                    'url'     => 'admin/messages/add',
+                    'url'     => 'admin/messages/create',
                 ],
             ],
         ],
         [
             'text'    => 'Pretplatnici',
             'icon'    => 'user',
-            'url' => 'admin/subscribers',
+            'submenu' => [
+                [   
+                    'text' => 'Pregled',
+                    'url' => 'admin/subscribers',
+                ],
+                [
+                    'text' => 'Statistika',
+                    'url' => 'admin/subscribers/stats',
+                ]
+            ]
+            
         ],
         [
             'text'    => 'Korisnici',
@@ -167,11 +170,11 @@ return [
             'submenu' => [
                 [
                     'text' => 'Pregled',
-                    'url'  => '#',
+                    'url'  => 'admin/users',
                 ],
                 [
-                    'text'    => 'Upravljaj',
-                    'url'     => '#',
+                    'text'    => 'Statistika',
+                    'url'     => 'admin/users/stats',
                 ],
             ],
         ],
@@ -186,7 +189,7 @@ return [
                 ],
                 [
                     'text' => 'Dodaj',
-                    'url'  => 'admin/news/add',
+                    'url'  => 'admin/news/create',
 
                 ],
             ],
@@ -204,44 +207,7 @@ return [
             'url'  => 'admin/settings',
             'icon' => 'lock',
         ],
-        /*[
-            'text'    => 'Multilevel',
-            'icon'    => 'share',
-            'submenu' => [
-                [
-                    'text' => 'Poruke',
-                    'url'  => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'Sve Poruke',
-                            'url' => 'admin/messages'
-                        ],
-                        [
-                            'text' => 'Dodaj Poruke',
-                            'url' => 'admin/messages/add'
-                        ]
-                    ],
-                ],
-                [
-                    'text'    => 'Slike',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'Sve Slike',
-                            'url'  => 'admin/images',
-                        ],
-                        [
-                            'text'    => 'Dodaj Slike',
-                            'url'     => 'admin/images/add',
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'Level One',
-                    'url'  => '#',
-                ],
-            ],
-        ],*/
+        
         'LABELS',
         [
             'text'       => 'Important',

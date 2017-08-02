@@ -58,7 +58,7 @@ class SubscriberRepository implements SubscriberRepositoryInterface
 
 	public function getPaginatedSubscribers($limit)
 	{
-		return Subscriber::paginate($limit);
+		return Subscriber::orderBy('email')->paginate($limit);
 
 	}
 

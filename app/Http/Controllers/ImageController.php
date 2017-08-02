@@ -43,10 +43,17 @@ class ImageController extends Controller
 		return view('admin.pages.images', compact('images', 'imagesTotal', 'categories'));
 
 	}
+
+	public function create()
+	{	
+		$categories = $this->imagesRepo->getImageCategories();
+
+		return view('admin.pages.images-create', compact('categories'));
+	}
 	
 	public function store(StoreImage $request)
 	{	
-
+		
 		$this->imageMaker->makeImage($request->file('image'))->addWatermark()->makeThumbnail()->storeAll();
 
 		$image = $this->imagesRepo->saveImage($request);

@@ -34,6 +34,14 @@ mix.scripts(['resources/assets/js-vendors/jquery-1.8.3.min.js',
 
 mix.styles('resources/assets/css/*.css', 'public/css/master.css');
 
+mix.scripts('node_modules/summernote/dist/summernote.min.js', 'public/js/admin/summernote.min.js');
+
+mix.styles('node_modules/summernote/dist/summernote.css', 'public/css/admin/summernote.css');
+
+
+
+
+
 /*mix.styles('node_modules/admin-lte/dist/css/AdminLTE.css', 'public/css/admin/AdminLTE.css');
 
 mix.styles('node_modules/admin-lte/dist/css/skins/skin-blue.css', 'public/css/admin/skins/skin-blue.css');

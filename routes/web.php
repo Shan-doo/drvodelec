@@ -26,11 +26,30 @@ Route::middleware(['auth', 'admin'])->group(function() {
 
 	Route::get('/admin', 'AdminController@index')->name('admin');
 
+	Route::get('/admin/users', 'UsersController@index');
+
+	Route::get('/admin/users/stats', 'UsersController@showStats');
+
+	Route::get('/admin/users/{user}', 'UsersController@show');
+
+
 	Route::get('/admin/images', 'ImageController@index');
+
+	Route::get('/admin/images/create', 'ImageController@create');
+
+	Route::delete('/admin/images', 'ImageController@delete');
+
+	Route::post('/admin/images/create', 'ImageController@store');
+
 
 	Route::get('/admin/messages', 'MessageController@index');
 
+	Route::get('/admin/messages/create', 'MessageController@create');
+
+
 	Route::get('/admin/subscribers', 'SubscribersController@index');
+
+	Route::get('/admin/subscribers/stats', 'SubscribersController@showStats');
 
 	Route::post('/subscribe', 'SubscribersController@store');
 
@@ -38,13 +57,27 @@ Route::middleware(['auth', 'admin'])->group(function() {
 
 	Route::delete('/admin/subscribers/{subscriber}', 'SubscribersController@destroy');
 
+
 	Route::post('/admin/categories', 'CategoriesController@store');
+	
 
 	Route::get('/admin/news', 'NewsController@index');
 
-	Route::post('/admin', 'ImageController@store');
+	Route::get('/admin/news/create', 'NewsController@create');
 
-	Route::delete('/admin/images', 'ImageController@delete');
+	Route::get('/admin/news/{news}', 'NewsController@show');
+	
+	Route::post('/admin/news', 'NewsController@store');
+
+	Route::delete('/admin/news/{news}', 'NewsController@delete');
+
+	Route::delete('/admin/news/images/{imageHash}', 'NewsController@deleteEditorImage');
+
+	Route::get('/admin/news/{news}/edit', 'NewsController@edit');
+
+	Route::put('/admin/news/{news}', 'NewsController@update');
+
+	
 
 	Route::get('/admin/messages/{conversation_id}', 'MessageController@show');
 

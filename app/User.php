@@ -27,6 +27,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    protected $dates = ['last_login'];
+
+    public function getRouteKeyName()
+    {
+        return 'username';
+    }
+
     public function role()
     {
         return $this->belongsTo(Role::class);
@@ -35,5 +42,20 @@ class User extends Authenticatable
     public function isAdmin()
     {
         return $this->role->name === 'admin' || $this->role->name === 'superadmin';
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function images()
+    {
+        return $this->hasMany(Image::class);
+    }
+
+    public function news()
+    {
+        return $this->hasMany(News::class);
     }
 }

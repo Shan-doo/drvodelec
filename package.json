@@ -13,5 +13,7 @@
     "cross-env": "^5.0.1",
     "laravel-mix": "^1.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "summernote": "^0.8.6"
+  }
 }

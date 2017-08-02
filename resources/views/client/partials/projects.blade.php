@@ -66,7 +66,7 @@
 				@foreach($images as $image)
 
 					<div id="projectImage{{ $i }}" class="col-md-4 col-sm-4 gall branding" data-image-name={{ $image->name }} data-character="@foreach($image->categories as $category){{ $category->name . ' ' }}@endforeach">
-						<a class="plS" href="/storage/images/{{ $image->name }}" rel="prettyPhoto[gallery2]">
+						<a class="plS" href="{{ asset('/storage/images/' . $image->name) }}" rel="prettyPhoto[gallery2]">
 							<div class="aspect aspect--16x9">
 								<div class="aspect__inner">
 									<img class="img-responsive picsGall" src="/storage/images/thumbnails/{{ $image->name }}" alt="{{ $image->description }}" width="356" height="276" style="display: block;" />

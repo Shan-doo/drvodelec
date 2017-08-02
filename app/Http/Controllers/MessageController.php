@@ -42,6 +42,11 @@ class MessageController extends Controller
 
 	}
 
+	public function create()
+	{
+		return view('admin.pages.messages-create');
+	}
+
 	public function show($conversation_id)
 	{	
 		return $this->messagesRepo->showConversation($conversation_id);

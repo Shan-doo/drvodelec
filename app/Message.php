@@ -21,6 +21,11 @@ class Message extends Model
     	return $this->belongsTo(Conversation::class);
 
     }
+
+    public function feeds()
+    {
+    	return $this->morphMany('App\Feed', 'feedable');
+    }
     
 }
 

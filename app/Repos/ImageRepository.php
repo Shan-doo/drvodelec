@@ -6,12 +6,17 @@ use App\Image;
 
 use App\Category;
 
+use App\Feed;
+
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Storage;
 
 use App\Repos\ImageRepositoryInterface;
 
+use Illuminate\Support\Facades\Auth;
+
+use App\Events\ImageWasUploaded;
 
 class ImageRepository implements ImageRepositoryInterface
 {	
@@ -80,18 +85,17 @@ class ImageRepository implements ImageRepositoryInterface
 	
 	public function saveImage(Request $request)
 	{
+		
+		$image = new Image([
 
-		$image = Image::create([
+			'name' => $request->file('image')->hashName(),
 
-					'name' => $request->file('image')->hashName(),
+			'description' => $request->description,
 
-					'description' => $request->description,
+			]);
 
-					'views' => 56,
+		Auth::user()->images()->save($image);
 
-					'likes' => 67
-
-		]);
 
 		$categories = $request->categories;
 
@@ -100,6 +104,8 @@ class ImageRepository implements ImageRepositoryInterface
 			$image->categories()->attach($category);
 
 		}
+
+		event(new ImageWasUploaded($image));
 
 		return $image;
 

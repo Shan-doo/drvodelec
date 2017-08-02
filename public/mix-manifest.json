@@ -5,5 +5,7 @@
     "/js/images.js": "/js/images.js",
     "/js/messages.js": "/js/messages.js",
     "/js/vendors.js": "/js/vendors.js",
-    "/css/master.css": "/css/master.css"
+    "/css/master.css": "/css/master.css",
+    "/js/admin/summernote.min.js": "/js/admin/summernote.min.js",
+    "/css/admin/summernote.css": "/css/admin/summernote.css"
 }

@@ -110,7 +110,7 @@ href="{{ asset('vendor/adminlte/dist/css/skins/skin-' . config('adminlte.skin', 
 												<li>
 													<!-- start notification -->
 													<a href="#">
-														<i class="fa fa-users text-aqua"></i> 5 new members joined today
+														<i class="fa fa-users text-aqua"></i> 4 new members joined today
 													</a>
 												</li>
 												<!-- end notification -->
@@ -163,7 +163,7 @@ href="{{ asset('vendor/adminlte/dist/css/skins/skin-' . config('adminlte.skin', 
 										<!-- The user image in the navbar-->
 										<img src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
 										<!-- hidden-xs hides the username on small devices so only the image appears. -->
-										<span class="hidden-xs">Alexander Pierce</span>
+										<span class="hidden-xs">{{ Auth::user()->username }}</span>
 									</a>
 									<ul class="dropdown-menu">
 										<!-- The user image in the menu -->
@@ -171,8 +171,8 @@ href="{{ asset('vendor/adminlte/dist/css/skins/skin-' . config('adminlte.skin', 
 											<img src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
 											<p>
-												Alexander Pierce - Web Developer
-												<small>Member since Nov. 2012</small>
+												{{ auth()->user()->username }} 
+												<small></small>
 											</p>
 										</li>
 										<!-- Menu Body -->
@@ -225,6 +225,16 @@ href="{{ asset('vendor/adminlte/dist/css/skins/skin-' . config('adminlte.skin', 
 					<!-- sidebar: style can be found in sidebar.less -->
 					<section class="sidebar">
 
+						<div class="user-panel">
+							<div class="pull-left image">
+								<img src="{{ asset('images/picTeam/ragnar.jpg') }}" class="img-circle" alt="User Image">
+							</div>
+							<div class="pull-left info">
+								<p>{{ Auth::user()->username }}</p>
+								<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+							</div>
+						</div>
+
 						<!-- Sidebar Menu -->
 						<ul class="sidebar-menu">
 							@each('adminlte::partials.menu-item', $adminlte->menu(), 'item')
@@ -244,6 +254,45 @@ href="{{ asset('vendor/adminlte/dist/css/skins/skin-' . config('adminlte.skin', 
 						<!-- Content Header (Page header) -->
 						<section class="content-header">
 							@yield('content_header')
+
+							@if(Request::segment(2))
+																			
+								<ol class="breadcrumb" style="font-size: 1.1em;float: none;position: relative;margin-bottom: 20px;padding-left: 10px;">
+							        					        
+									<li>
+
+									  <i class="fa fa-home"></i>
+
+									  <a href="{{route('admin')}}">Home</a>	
+
+									</li>
+
+									@php
+
+										$url = '/admin/';
+
+									@endphp
+
+									@for($i = 2; $i <= count(Request::segments()); $i++)
+
+										@php
+
+											$url = $url . Request::segment($i) . '/';
+
+										@endphp
+
+										<li>
+										
+										  	<a href="{{ $url }}">{{ ucfirst(Request::segment($i)) }}</a>
+											
+										</li>
+
+									@endfor
+									
+							    </ol>
+
+							@endif
+							
 						</section>
 
 						<!-- Main content -->
@@ -259,6 +308,17 @@ href="{{ asset('vendor/adminlte/dist/css/skins/skin-' . config('adminlte.skin', 
 					@endif
 				</div>
 				<!-- /.content-wrapper -->
+
+				<footer class="main-footer">
+
+				    <div class="pull-right hidden-xs">
+				    	<!-- <b>Version</b> 2.4.0 -->
+				    </div>
+
+				    <strong>Copyright © 2014-{{ \Carbon\Carbon::now()->year }} <a href="{{ config('app.url') }}">{{ config('app.name') }}</a>.</strong> All rights
+				    reserved.
+
+				 </footer>
 
 			</div>
 			<!-- ./wrapper -->

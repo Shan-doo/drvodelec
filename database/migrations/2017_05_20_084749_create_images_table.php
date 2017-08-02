@@ -18,8 +18,9 @@ class CreateImagesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('description')->nullable();
-            $table->integer('views');
-            $table->integer('likes');
+            $table->integer('views')->default(0);
+            $table->integer('likes')->default(0);
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

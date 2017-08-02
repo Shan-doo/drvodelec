@@ -14,6 +14,8 @@ use App\Classes\ConversationToken;
 
 use Illuminate\Support\Facades\Mail;
 
+use App\Feed;
+
 
 class MessageRepository implements MessageRepositoryInterface
 {
@@ -28,7 +30,7 @@ class MessageRepository implements MessageRepositoryInterface
 
 			$conversation->save();
 
-			Message::create([
+			$message = Message::create([
 
 				'owner' => 0,
 				'body' => request('body'),
@@ -47,7 +49,7 @@ class MessageRepository implements MessageRepositoryInterface
 
 			]);
 
-			Message::create([
+			$message = Message::create([
 
 				'owner' => 0,
 				'body' => request('body'),
@@ -56,6 +58,14 @@ class MessageRepository implements MessageRepositoryInterface
 			]);
 
 		}
+
+		$feed = Feed::create([
+			'event_id' => 2,
+			'feedable_id' => $message->id,
+			'feedable_type' => 'App\Message',
+		]);
+
+
 	}
 
 	public function deleteConversation($conversationId)

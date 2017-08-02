@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Http\File;
 
+use Carbon\Carbon;
+
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -21,12 +23,17 @@ use Illuminate\Http\File;
 
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
+    $now = Carbon::now();
 
     return [
-        'name' => $faker->name,
+        'username' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
+        'role_id' => rand(1, 3),
         'remember_token' => str_random(10),
+        'created_at' => $created = $now->subMonths(rand(1, 36))->subDays(rand(1, 30)),
+        'updated_at' => $created->addMonths(rand(1, 6))->addDays(rand(1, 30)),
+        'last_login' => $created->addMonths(rand(1, 6))->addDays(rand(1, 30)),
     ];
 });
 
@@ -78,7 +85,9 @@ $factory->define(App\Image::class, function (Faker\Generator $faker) {
 
         'views' => rand(55, 111),
 
-        'likes' => rand(33, 55)
+        'likes' => rand(33, 55),
+
+        'user_id' => rand(1, 3),
     ];
 });
 
@@ -90,9 +99,13 @@ $factory->define(App\Category::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Subscriber::class, function (Faker\Generator $faker) {
+
+    $now = Carbon::now();
     
     return [
         'email' => $faker->email,
-        'status' => rand(0,1)
+        'status' => rand(0,1),
+        'created_at' => $created = $now->subMonths(rand(1, 36))->subDays(rand(1, 30)),
+        'updated_at' => $created->addMonths(rand(1, 6))->addDays(rand(1, 30)),
     ];
 });
