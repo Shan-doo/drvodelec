@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Storage;
 
+use App\Events\NewsWasPublished;
+
+use App\Events\NewsWasEdited;
 
 class NewsController extends Controller
 {
@@ -39,7 +42,7 @@ class NewsController extends Controller
     }
 
     public function store(Request $request)
-    {
+    {   
     	if ($request->ajax()) {
 
             if ($request->image) {
@@ -59,7 +62,9 @@ class NewsController extends Controller
 
         Auth::user()->news()->save($news);
 
-        return redirect()->back();
+        event(new NewsWasPublished($news));
+
+        return redirect()->route('news');
     }
 
     public function edit(News $news)
@@ -70,10 +75,13 @@ class NewsController extends Controller
     public function update(Request $request, News $news)
     {
         $news->title = $request->title;
+        $news->slug = null;
         $news->body = $request->body;
         $news->save();
 
-        return redirect()->back();
+        event(new NewsWasEdited($news));
+
+        return redirect()->route('news-show', [$news]);
     }
 
     public function delete(Request $request, News $news)

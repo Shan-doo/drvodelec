@@ -37,6 +37,17 @@
 @yield('body')
 <script src="{{ asset('vendor/adminlte/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
 <script src="{{ asset('vendor/adminlte/bootstrap/js/bootstrap.min.js') }}"></script>
+
+<script type="text/javascript">
+    
+    $.ajaxSetup({
+
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+</script>
 @if(config('adminlte.plugins.datatables'))
     <!-- DataTables -->
     <script src="//cdn.datatables.net/v/bs/dt-1.10.13/datatables.min.js"></script>

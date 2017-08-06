@@ -5,6 +5,17 @@
 href="{{ asset('vendor/adminlte/dist/css/skins/skin-' . config('adminlte.skin', 'blue') . '.min.css')}} ">
 @stack('css')
 @yield('css')
+
+<style type="text/css">
+	
+	.user-panel .image img {
+	  width: 100%;
+	  max-width: 45px;
+	  height: auto;
+	}
+
+</style>
+
 @stop
 
 @section('body_class', 'skin-' . config('adminlte.skin', 'blue') . ' sidebar-mini ' . (config('adminlte.layout') ? [
@@ -226,12 +237,17 @@ href="{{ asset('vendor/adminlte/dist/css/skins/skin-' . config('adminlte.skin', 
 					<section class="sidebar">
 
 						<div class="user-panel">
+							<a href="">
 							<div class="pull-left image">
-								<img src="{{ asset('images/picTeam/ragnar.jpg') }}" class="img-circle" alt="User Image">
+								<a href="{{ '/admin/users/' . Auth::user()->username }}">						
+									<img src="{{ asset('storage/avatars/cropped/' . Auth::user()->avatar) }}" class="img-circle" alt="User Image">
+								</a>	
 							</div>
+							</a>
 							<div class="pull-left info">
-								<p>{{ Auth::user()->username }}</p>
-								<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+								<a style="font-size: 1em;" href="{{ '/admin/users/' . Auth::user()->username }}">{{ Auth::user()->username }}</a><br><br>
+								<small><i class="fa fa-circle text-success"></i> Online</small>
+								<small><i class="fa fa-circle text-danger"></i> Offline</small>
 							</div>
 						</div>
 

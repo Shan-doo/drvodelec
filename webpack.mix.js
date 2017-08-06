@@ -15,10 +15,12 @@ const { mix } = require('laravel-mix');
    /*.sass('resources/assets/sass/app.scss', 'public/css');*/
 mix.scripts(['resources/assets/js/app.js', 'resources/assets/js/shuffle-sort.js', ], 'public/js/app.js');
 
-mix.scripts('resources/assets/js/admin.js', 'public/js/admin.js');
+/*mix.scripts('resources/assets/js/admin.js', 'public/js/admin.js');
 mix.scripts('resources/assets/js/subscribers.js', 'public/js/subscribers.js');
 mix.scripts('resources/assets/js/images.js', 'public/js/images.js');
-mix.scripts('resources/assets/js/messages.js', 'public/js/messages.js');
+mix.scripts('resources/assets/js/messages.js', 'public/js/messages.js');*/
+
+mix.scripts('resources/assets/js/admin/user-profile.js', 'public/js/admin/user-profile.js');
 
 mix.scripts(['resources/assets/js-vendors/jquery-1.8.3.min.js',
 			'resources/assets/js-vendors/ajaxSetup.js',

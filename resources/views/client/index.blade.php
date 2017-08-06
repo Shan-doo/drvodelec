@@ -23,7 +23,6 @@
 
 	@endif
 
-	
 	@include('client.partials.about')
 
 	@include('client.partials.projects')

@@ -9,7 +9,7 @@ class EventsTableSeeder extends Seeder
      *
      * @return void
      */
-    protected $events = ['user_registered', 'message_received', 'image_uploaded'];
+    protected $events = ['user_registered', 'message_received', 'image_uploaded', 'news_published', 'news_edited', 'user_blocked', 'user_unblocked',];
 
     public function run()
     {	

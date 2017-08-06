@@ -25,9 +25,11 @@ return [
         'default' => [
             'HTML.Doctype'             => 'HTML 4.01 Transitional',
             'HTML.Allowed'             => 'div,b,strong,i,em,u,a[href|title],ul,ol,li,p[style|align],br,span[style],img[width|height|alt|src|style|class],h1[align],h2[align],h3[align],h4[align],h5[align],h6[align],blockquote,font[color],table[class], tbody, tr, td',
-            'CSS.AllowedProperties'    => 'font,font-size,font-weight,font-style,font-family,text-decoration,padding-left,color,background-color,text-align,padding,float,width,height,margin-left,margin-right,margin',
+            'CSS.AllowedProperties'    => 'width,height,font,font-size,font-weight,font-style,font-family,text-decoration,padding-left,color,background-color,text-align,padding,float,margin-left,margin-right,margin',
             'AutoFormat.AutoParagraph' => true,
             'AutoFormat.RemoveEmpty'   => true,
+            'HTML.MaxImgLength' => null,
+            'CSS.MaxImgLength' => null,
         ],
         'test'    => [
             'Attr.EnableID' => 'true',

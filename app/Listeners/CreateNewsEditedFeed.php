@@ -2,15 +2,13 @@
 
 namespace App\Listeners;
 
-use App\Events\ImageWasUploaded;
+use App\Events\NewsWasEdited;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-
 use Illuminate\Support\Facades\Auth;
-
 use App\Feed;
 
-class CreateImageFeed
+class CreateNewsEditedFeed
 {
     /**
      * Create the event listener.
@@ -25,15 +23,15 @@ class CreateImageFeed
     /**
      * Handle the event.
      *
-     * @param  ImageWasUploaded  $event
+     * @param  NewsWasEdited  $event
      * @return void
      */
-    public function handle(ImageWasUploaded $event)
+    public function handle(NewsWasEdited $event)
     {
         Feed::create([
-            'event_id' => 3,
-            'feedable_id' => $event->image->id,
-            'feedable_type' => 'App\Image',
+            'event_id' => 5,
+            'feedable_id' => $event->news->id,
+            'feedable_type' => 'App\News',
             'user_id' => Auth::user()->id,
         ]);
     }

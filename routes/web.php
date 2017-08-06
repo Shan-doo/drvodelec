@@ -32,6 +32,12 @@ Route::middleware(['auth', 'admin'])->group(function() {
 
 	Route::get('/admin/users/{user}', 'UsersController@show');
 
+	Route::patch('/admin/users/{user}', 'UsersController@update');
+
+	Route::post('/admin/users/avatars', 'ImageController@storeTempAvatar');
+
+	Route::delete('/admin/users/avatars/', 'ImageController@deleteTempAvatar');
+
 
 	Route::get('/admin/images', 'ImageController@index');
 
@@ -40,6 +46,8 @@ Route::middleware(['auth', 'admin'])->group(function() {
 	Route::delete('/admin/images', 'ImageController@delete');
 
 	Route::post('/admin/images/create', 'ImageController@store');
+
+	Route::post('/admin/api/cropped-img', 'ImageController@decodeAndStoreImg');
 
 
 	Route::get('/admin/messages', 'MessageController@index');
@@ -61,11 +69,11 @@ Route::middleware(['auth', 'admin'])->group(function() {
 	Route::post('/admin/categories', 'CategoriesController@store');
 	
 
-	Route::get('/admin/news', 'NewsController@index');
+	Route::get('/admin/news', 'NewsController@index')->name('news');
 
 	Route::get('/admin/news/create', 'NewsController@create');
 
-	Route::get('/admin/news/{news}', 'NewsController@show');
+	Route::get('/admin/news/{news}', 'NewsController@show')->name('news-show');
 	
 	Route::post('/admin/news', 'NewsController@store');
 

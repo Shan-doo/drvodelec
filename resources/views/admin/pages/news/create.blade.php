@@ -13,12 +13,20 @@
 
 	<div class="col-md-12">
 
+		@if ($errors->any())
+		    <div class="alert alert-danger">
+		        <ul>
+		            @foreach ($errors->all() as $error)
+		                <li>{{ $error }}</li>
+		            @endforeach
+		        </ul>
+		    </div>
+		@endif
+
 		<div class="box box-info">
 
 			<div class="box-header">
-				<h3 class="box-title">CK Editor
-					<small>Advanced and full of features</small>
-				</h3>
+
 				<!-- tools box -->
 				<div class="pull-right box-tools">
 					<button type="button" class="btn btn-info btn-sm" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Collapse">
@@ -34,7 +42,7 @@
 
 						@if(isset($news))
 
-							<form method="POST" action="{{ '/admin/news/' . $news->id }}">
+							<form method="POST" action="{{ '/admin/news/' . $news->slug }}">
 
 								{{ csrf_field() }}
 
@@ -164,7 +172,7 @@
 
          
 			$.ajax({		
-			url: '/admin/news/store',
+			url: '/admin/news',
 			type: 'POST',
 			data: data,
 			cache: false,
@@ -180,6 +188,7 @@
 				$summernote.summernote('insertNode', $image[0]);
 			})
 			.fail(function() {
+
 				console.log("error");
 			})
 			.always(function() {

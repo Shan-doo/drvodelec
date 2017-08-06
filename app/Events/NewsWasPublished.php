@@ -12,7 +12,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 use App\News;
 
-class MessageWasReceived
+class NewsWasPublished
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -22,9 +22,11 @@ class MessageWasReceived
      * @return void
      */
 
-    public function __construct()
+    public $news;
+
+    public function __construct(News $news)
     {
-        //
+        $this->news = $news;
     }
 
     /**

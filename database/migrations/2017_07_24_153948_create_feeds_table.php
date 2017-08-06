@@ -19,6 +19,7 @@ class CreateFeedsTable extends Migration
             $table->integer('event_id')->unsigned()->nullable();
             $table->integer('feedable_id');
             $table->string('feedable_type');
+            $table->integer('user_id');
             $table->timestamps();
         });
 

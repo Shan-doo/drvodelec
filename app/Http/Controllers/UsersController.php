@@ -6,7 +6,15 @@ use Illuminate\Http\Request;
 
 use App\User;
 
+use App\Feed;
+
 use Illuminate\Support\Facades\DB;
+
+use Illuminate\Support\Facades\Auth;
+
+use App\Http\Requests\UpdateUser;
+
+
 
 class UsersController extends Controller
 {
@@ -17,7 +25,7 @@ class UsersController extends Controller
     		return response()->json(['data' => User::all()]);
     	}
 
-    	return view('admin.pages.users');
+    	return view('admin.pages.users.index');
     }
 
     public function showStats(Request $request)
@@ -34,11 +42,59 @@ class UsersController extends Controller
                         ];
         /*}*/
 
-        return view('admin.pages.users-stats');
+        return view('admin.pages.users.stats');
     }
 
     public function show(User $user)
     {	
-    	return view('admin.pages.user-show', ['user' => $user]);
+        $feeds = $user->feeds()->orderBy('created_at', 'desc')->get();
+
+    	return view('admin.pages.users.show', ['user' => $user, 'feeds' => $feeds]);
     }
+
+    /*public function storeAvatar(Request $request)
+    {   
+        
+        $user = User::find(Auth::user()->id);
+
+        if ($user->avatar != null) {
+            
+            if (unlink(storage_path('app/public/avatars/' . $user->avatar))) {
+                
+                $imageName = $request->image->store('public/avatars/');
+
+                list($imageName, $extension) = explode('.', substr($imageName, strripos($imageName, '/') + 1));
+
+                $user->avatar = $imageName . '.' . $extension;
+
+                $user->save();
+
+            } else {
+
+                return;
+            }
+        } else {
+
+            $imageName = $request->image->store('public/avatars/');
+
+            list($imageName, $extension) = explode('.', substr($imageName, strripos($imageName, '/') + 1));
+
+            $user->avatar = $imageName . '.' . $extension;
+
+            $user->save();
+        }
+
+        
+
+        return $imageName . '.' . $extension;
+    }*/
+
+    public function update(User $user, UpdateUser $request)
+    {   
+        $user->username = $request->username;
+        $user->email = $request->email;
+        $user->password = $request->new_password;
+        $user->save();
+    }
+
 }

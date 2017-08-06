@@ -33,6 +33,7 @@ class CreateUserFeed
             'event_id' => 1,
             'feedable_id' => $event->user->id,
             'feedable_type' => 'App\User',
+            'user_id' => $event->user->id,
         ]);
     }
 }

@@ -198,17 +198,12 @@ return [
         ////
         'ACCOUNT SETTINGS',
         [
-            'text' => 'Profile',
-            'url'  => 'admin/settings',
-            'icon' => 'user',
-        ],
-        [
             'text' => 'Change Password',
             'url'  => 'admin/settings',
             'icon' => 'lock',
         ],
         
-        'LABELS',
+        /*'LABELS',
         [
             'text'       => 'Important',
             'icon_color' => 'red',
@@ -220,7 +215,7 @@ return [
         [
             'text'       => 'Information',
             'icon_color' => 'aqua',
-        ],
+        ],*/
     ],
 
     /*

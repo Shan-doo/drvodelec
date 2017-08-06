@@ -27,7 +27,7 @@ class SubscribersController extends Controller
             return response()->json(['data' => Subscriber::all()]);
         }
 
-        return view('admin.pages.subscribers'); 
+        return view('admin.pages.subscribers.index'); 
                 
     }
 
@@ -60,7 +60,7 @@ class SubscribersController extends Controller
 
         }
         
-        return view('admin.pages.subscribers-stats');
+        return view('admin.pages.subscribers.stats');
     }
 
 	public function store(Request $request)

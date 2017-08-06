@@ -25,6 +25,18 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\ImageWasUploaded' => [
             'App\Listeners\CreateImageFeed',
         ],
+
+        'App\Events\NewsWasPublished' => [
+            'App\Listeners\CreateNewsFeed',
+        ],
+
+        'App\Events\NewsWasEdited' => [
+            'App\Listeners\CreateNewsEditedFeed',
+        ],
+
+        'Illuminate\Auth\Events\Logout' => [
+            'App\Listeners\LogSuccessfulLogout',
+        ],
     ];
 
     /**

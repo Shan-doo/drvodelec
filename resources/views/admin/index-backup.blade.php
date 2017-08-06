@@ -52,7 +52,21 @@
 
 	@if(count($feeds))
 		
-		@for($i = 0; $i < count($feeds); $i++)
+		@for($i = 1; $i < count($feeds); $i++)
+
+			@if($feeds[$i]->created_at->format('d-M-Y') !== $feeds[$i - 1]->created_at->format('d-M-Y'))
+
+				<li class="time-label">
+
+				      <span class="bg-green">
+
+				        {{ $feeds[$i]->created_at->format('d-M-Y') }}
+
+				      </span>
+
+				</li>
+
+			@endif
 
 			@if($feeds[$i]->event->name === 'message_received')
 
@@ -129,7 +143,7 @@
 			@elseif($feeds[$i]->event->name === 'news_published')
 
 				<li>
-					<i class="fa fa-newspaper-o bg-aqua"></i>
+					<i class="fa fa-newspaper-o bg-yellow"></i>
 
 					<div class="timeline-item">
 						<span class="time"><i class="fa fa-clock-o"></i> {{ $feeds[$i]->created_at->diffForHumans() }}</span>
@@ -137,10 +151,12 @@
 						<h3 class="timeline-header"><a href="{{ '/admin/users/' . $feeds[$i]->user->username }}">{{ $feeds[$i]->user->username }}</a> published <a href="{{ '/admin/news/' . $feeds[$i]->feedable->slug }}">{{ $feeds[$i]->feedable->title }}</a></h3>
 
 						<div class="timeline-body">
-							{{ strip_tags(str_limit($feeds[$i]->feedable->body, $limit = 300, $end='...')) }}
+							Take me to your leader!
+							Switzerland is small and neutral!
+							We are more like Germany, ambitious and misunderstood!
 						</div>
 						<div class="timeline-footer">
-							<a class="btn btn-flat btn-xs bg-aqua" href="{{ '/admin/news/' . $feeds[$i]->feedable->slug }}">View Article</a>
+							<a class="btn btn-warning btn-flat btn-xs">View comment</a>
 						</div>
 					</div>
 				</li>
@@ -148,7 +164,7 @@
 				@elseif($feeds[$i]->event->name === 'news_edited')
 
 				<li>
-					<i class="fa fa-pencil bg-green"></i>
+					<i class="fa fa-pencil bg-aqua"></i>
 
 					<div class="timeline-item">
 						<span class="time"><i class="fa fa-clock-o"></i> {{ $feeds[$i]->created_at->diffForHumans() }}</span>
@@ -156,31 +172,13 @@
 						<h3 class="timeline-header"><a href="{{ '/admin/users/' . $feeds[$i]->user->username }}">{{ $feeds[$i]->user->username }}</a> updated <a href="{{ '/admin/news/' . $feeds[$i]->feedable->slug }}">{{ $feeds[$i]->feedable->title }}</a></h3>
 
 						<div class="timeline-body">
-							{{ strip_tags(str_limit($feeds[$i]->feedable->body, $limit = 300, $end='...')) }}
+							
 						</div>
 						<div class="timeline-footer">
-							<a class="btn btn-flat btn-xs bg-green" href="{{ '/admin/news/' . $feeds[$i]->feedable->slug }}">View Article</a>
+							<a class="btn btn-warning btn-flat btn-xs">View comment</a>
 						</div>
 					</div>
 				</li>	
-
-			@endif
-
-			@if(!empty($feeds[$i + 1]))
-
-				@if($feeds[$i]->created_at->format('d-M-Y') !== $feeds[$i + 1]->created_at->format('d-M-Y'))
-
-					<li class="time-label">
-
-					      <span class="bg-green">
-
-					        {{ $feeds[$i + 1]->created_at->format('d-M-Y') }}
-
-					      </span>
-
-					</li>
-
-				@endif
 
 			@endif
 

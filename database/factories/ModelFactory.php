@@ -29,7 +29,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'username' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
-        'role_id' => rand(1, 3),
+        'role_id' => rand(1, 2),
         'remember_token' => str_random(10),
         'created_at' => $created = $now->subMonths(rand(1, 36))->subDays(rand(1, 30)),
         'updated_at' => $created->addMonths(rand(1, 6))->addDays(rand(1, 30)),

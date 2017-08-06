@@ -8,6 +8,8 @@ use App\Repos\ImageRepositoryInterface;
 
 use App\Repos\MessageRepositoryInterface;
 
+use App\News;
+
 
 class IndexController extends Controller
 {	
@@ -49,7 +51,11 @@ class IndexController extends Controller
 
 		$categories = $this->imageRepo->indexCategories();
 
-		return view('client.index', compact('images', 'categories', 'conversation'));
+		$news = News::all();
+
+		/*dd($news->toArray());*/
+
+		return view('client.index', compact('images', 'categories', 'conversation', 'news'));
 
 		}
 	}

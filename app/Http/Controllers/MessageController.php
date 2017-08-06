@@ -37,14 +37,14 @@ class MessageController extends Controller
 
 		}
 
-		return view('admin.pages.messages', 
+		return view('admin.pages.messages.index', 
 				compact('conversations', 'conversationsTotal', 'conversationsUnread'));
 
 	}
 
 	public function create()
 	{
-		return view('admin.pages.messages-create');
+		return view('admin.pages.messages.create');
 	}
 
 	public function show($conversation_id)

@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Schema;
 
 use Illuminate\Support\Facades\Mail;
 
+use Illuminate\Support\Facades\Validator;
+
+use Illuminate\Support\Facades\Auth;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -18,6 +22,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+
+        /*Validator::extend('old_password', function ($attribute, $value, $parameters, $validator) {
+            return bcrypt($value) == Auth::user()->password;
+        });*/
     }
 
     /**

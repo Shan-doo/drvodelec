@@ -61,7 +61,7 @@
 	            	},
 	                { data: '', 'render': function(data, type, full, meta) {
 
-	                	return '<button class="btn btn-default deleteNews" data-news-id="'+full.id+'" href=""><i class="fa fa-trash-o" aria-hidden="true"></i></button>';
+	                	return '<button class="btn btn-default deleteNews" data-news-id="' + full.slug + '" href=""><i class="fa fa-trash-o" aria-hidden="true"></i></button>';
 
 	                	} 
 	            	}
